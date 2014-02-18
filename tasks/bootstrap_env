@@ -1,6 +1,0 @@
-#!/bin/bash
-virtualenv virt_env
-./virt_env/bin/pip install jinja2
-./virt_env/bin/pip install markdown
-echo '---'
-echo '--> $ source virt_env/bin/activate'
