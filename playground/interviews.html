@@ -1,0 +1,7 @@
+{% extends "default.html" %}
+{% block content %}
+    <h2> list </h2>
+    {% for interview in data.interviews %}
+        <dt>{{interview.name}}
+    {% endfor %}
+{% endblock %}

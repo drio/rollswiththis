@@ -1,0 +1,40 @@
+#!./virt_env/bin/python
+#
+import os
+import shutil
+from jinja2 import FileSystemLoader
+from jinja2.environment import Environment
+
+env = Environment()
+env.loader = FileSystemLoader('./templates')
+
+# site/css
+# site/images/portraits
+shutil.copytree("public", "site")
+
+# site/404.html
+tmpl = env.get_template('default.html')
+data = {}
+data['title'] = '404'
+data['type'] = 'post'
+data['content'] = open('pages/404.html').read()
+with open('site/404.html', 'w') as _f:
+    _f.write(tmpl.render(data=data))
+
+# site/about.html
+tmpl = env.get_template('default.html')
+data = {}
+data['title'] = 'About'
+data['type'] = 'post'
+data['content'] = open('pages/about/index.html').read()
+with open('site/about.html', 'w') as _f:
+    _f.write(tmpl.render(data=data))
+
+
+# site/index.html (landing)
+# site/pageXXXX/index.html (pagination)
+# site/interviews/NAME/index.html (individual interviews)
+#
+
+
+

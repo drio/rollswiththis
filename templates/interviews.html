@@ -1,0 +1,31 @@
+---
+layout: default
+title: Interviews
+---
+
+<% @posts.each do |interview| %>
+  <article class="interviewee">
+    <a class="port_image" href="http://<%= interview.slug %>.rollswiththis.com/" title="View an interview with <%= interview.name %>."><img src="/images/portraits/<%= interview.slug %>.jpg" width="250" height="168" class="portrait" alt="<%= interview.name %>"></a>
+    <div class="person_info">
+            <h3 class="person"><a href="http://<%= interview.slug %>.rollswiththis.com/" title="View an interview with <%= interview.name %>."><%= interview.name %></a></h3>
+            <p class="summary"><%= interview.summary %></p>
+            <p class="details">
+              Posted <time datetime="<%= interview.date.strftime('%Y-%m-%d') %>"><%= interview.date.strftime('%B %d, %Y') %>.</time>
+              <% if interview.credits %>
+                Photo by <% if interview.credits['url'] %><a href="<%= interview.credits['url'] %>" title="View more about <%= interview.credits['name'] %>."><%= interview.credits['name'] %></a><% else %><%= interview.credits['name'] %><% end %>.
+              <% end %>
+            </p>
+            <ul class="categories">
+            <% interview.categories.each do |category| %><li><a href="/interviews/<%= category %>/" title="View all the <%= category.capitalize %> interviews."><%= category %></a></li><% end %>
+            </ul>
+    </div>
+  </article>
+<% end %>
+
+<% if @pagination[:pages] > 1 %>
+<nav id="paginator">
+<% if @pagination[:previous_page] %><a href="<%= @pagination[:path] if @pagination[:path] %><% if @pagination[:previous_page] != 1 %>page<%= @pagination[:previous_page] %><% end %>" title="Go to page <%= @pagination[:previous_page] %> of the interviews.">Previous</a><% else %><span>Previous</span><% end %>
+- Page <strong><%= @pagination[:page] %></strong> of <strong><%= @pagination[:pages] %></strong> (<%= @pagination[:total] %> interview<% if @pagination[:total] != 1 %>s<% end %>) -
+<% if @pagination[:next_page] %><a href="<%= @pagination[:path] if @pagination[:path] %>page<%= @pagination[:next_page] %>" title="Go to page <%= @pagination[:next_page] %> of the interviews.">Next</a><% else %><span>Next</span><% end %>
+</nav>
+<% end %>
