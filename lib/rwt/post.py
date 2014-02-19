@@ -1,0 +1,33 @@
+import yaml
+import markdown2
+
+
+class Post(object):
+    def __init__(self, path):
+        self._input = open(path).read()
+        self.yaml = {}
+        self.markdown = ""
+        self.load_yaml()
+        self.load_markdown()
+
+    def load_yaml(self):
+        docs = yaml.load_all(self._input)
+        first_doc = True
+        for doc in docs:
+            if first_doc:
+                for k, v in doc.items():
+                    self.yaml[k] = v
+                first_doc = False
+            else:
+                break
+
+    def load_markdown(self):
+        n = 0
+        for l in self._input.split('\n'):
+            if n == 2:
+                self.markdown += l + "\n"
+            if l[0:3] == '---':
+                n += 1
+
+    def html(self):
+        return markdown2.markdown(self.markdown)
