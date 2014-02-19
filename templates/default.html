@@ -25,8 +25,8 @@
             <a href="/">Home</a> | <a href="/about.html">About</a>
         </header>
 
-        <div id="content">
-            {{ data.content }}
-        </div>
+         <div id="content">
+            {% block content %}{% endblock %}
+         </div>
 	</body>
 </html>

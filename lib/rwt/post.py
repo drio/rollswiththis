@@ -1,5 +1,9 @@
+import sys
 import yaml
 import markdown2
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 
 class Post(object):

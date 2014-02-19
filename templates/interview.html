@@ -1,24 +1,22 @@
----
-layout: default
----
-
+{% extends "default.html" %}
+{% block content %}
 <article class="interview">
-  <img src="/images/portraits/<%= @this.slug %>.jpg" width="500" height="335" class="portrait" alt="<%= @this.name %>">
-  <h3 class="person"><%= @this.name %></h3>
-  <p class="summary"><%= @this.summary %></p>
+  <img src="/images/portraits/{{ data.name }}.jpg" width="500" height="335" class="portrait" alt="{{ data.name }}">
+  <h3 class="person">{{ data.name }}</h3>
+  <p class="summary">{{ data.summary }}</p>
   <p class="details">
-    Posted <time datetime="<%= @this.date.strftime('%Y-%m-%d') %>"><%= @this.date.strftime('%B %d, %Y') %>.</time>
-    <% if @this.credits %>
-      Photo by <% if @this.credits['url'] %><a href="<%= @this.credits['url'] %>" title="View more about <%= @this.credits['name'] %>."><%= @this.credits['name'] %></a><% else %><%= @this.credits['name'] %><% end %>.
-    <% end %>
+    Posted <time datetime="{{ data.time }}">{{ data.time }}.</time>
   </p>
   <ul class="categories">
-    <% @this.categories.each do |category| %><li><a href="/interviews/<%= category %>/" title="View all the <%= category.capitalize %> interviews."><%= category %></a></li><% end %>
+    {% for cat in data.categories  %}
+        <li><a href="/interviews/{{ cat }}/" title="View all the {{ cat }} interviews.">{{ cat }}</a></li>
+    {% endfor %}
   </ul>
 
-  <%= @this.markdown %>
+  {{ data.markdown }}
 
-  <% if @this.license %>
-  <p class="license">This interview is available under the <a href="http://creativecommons.org/licenses/<%= @this.license %>/3.0/" title="View details of the license."><%= @this.license.upcase %> Creative Commons license</a>.</p>
-  <% end %>
+  <p class="license">This interview is available under the <a href="http://creativecommons.org/licenses/by-sa/3.0/" title="View details of the license."> Attribution-ShareAlike Creative Commons license</a>.</p>
 </article>
+{% endblock %}
+
+

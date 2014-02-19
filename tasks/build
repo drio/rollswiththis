@@ -1,43 +1,52 @@
 #!./virt_env/bin/python
 #
+import sys
 import os
 import shutil
-from jinja2 import FileSystemLoader
-from jinja2.environment import Environment
+import rwt
 
-env = Environment()
-env.loader = FileSystemLoader('./templates')
+def log(msg):
+    sys.stdout.write(">> " + msg + "\n")
 
 # site/css
 # site/images/portraits
 shutil.copytree("public", "site")
 
 # site/404.html
-tmpl = env.get_template('default.html')
+log("Creating 404.")
 data = {}
 data['title'] = '404'
 data['type'] = 'post'
 data['content'] = open('pages/404.html').read()
-with open('site/404.html', 'w') as _f:
-    _f.write(tmpl.render(data=data))
+rwt.render(data, 'site/404.html')
 
 # site/about.html
-tmpl = env.get_template('default.html')
+log("Creating about.")
 data = {}
 data['title'] = 'About'
 data['type'] = 'post'
 data['content'] = open('pages/about/index.html').read()
-with open('site/about.html', 'w') as _f:
-    _f.write(tmpl.render(data=data))
+rwt.render(data, 'site/about.html')
 
 # Load all posts (name, summary, tags, content (markdown))
 # yaml + markdown
+posts = rwt.load_posts()
+log("Loaded %s interviews." % len(posts))
+
+# site/interviews/NAME/index.html (individual interviews)
+for p in posts:
+    name = p.yaml['name']
+    log("interview: %s" % name)
+    data = p.yaml  # name, person, summary, categories
+    data['title'] = "Interview with: " + name
+    data['markdown'] = p.html()
+    out_file = 'site/interviews/%s/index.html' % name.replace(" ", ".")
+    rwt.render(data, out_file, 'interview.html')
+
 
 # site/index.html (landing)
 # site/pageXXXX/index.html (pagination)
 
-# site/interviews/NAME/index.html (individual interviews)
-#
 
 
 
