@@ -6,7 +6,8 @@ site:
 virt_env:
 	virtualenv virt_env
 	./virt_env/bin/pip install jinja2
-	./virt_env/bin/pip install markdown
+	./virt_env/bin/pip install markdown2
+	./virt_env/bin/pip install pyyaml
 	@echo '---'
 	@echo '--> $ source virt_env/bin/activate'
 

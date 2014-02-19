@@ -30,9 +30,12 @@ data['content'] = open('pages/about/index.html').read()
 with open('site/about.html', 'w') as _f:
     _f.write(tmpl.render(data=data))
 
+# Load all posts (name, summary, tags, content (markdown))
+# yaml + markdown
 
 # site/index.html (landing)
 # site/pageXXXX/index.html (pagination)
+
 # site/interviews/NAME/index.html (individual interviews)
 #
 
