@@ -185,7 +185,7 @@ display: inline-block;
 margin: 0 5px 5px 0;
 }
 
-ul.categories li a:link, ul.categories li a:visited {
+ul.categories li, li a:link, ul.categories li a:visited {
 padding: 0 5px;
 margin: 0;
 background-color: #fcfcfc;

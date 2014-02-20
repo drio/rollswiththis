@@ -1,7 +1,7 @@
 {% extends "default.html" %}
 {% block content %}
 <article class="interview">
-  <img src="/images/portraits/{{ data.name }}.jpg" width="500" height="335" class="portrait" alt="{{ data.name }}">
+  <img src="/images/portraits/{{ data.dot_name }}.jpg" width="500" height="335" class="portrait" alt="{{ data.name }}">
   <h3 class="person">{{ data.name }}</h3>
   <p class="summary">{{ data.summary }}</p>
   <p class="details">
@@ -9,7 +9,8 @@
   </p>
   <ul class="categories">
     {% for cat in data.categories  %}
-        <li><a href="/interviews/{{ cat }}/" title="View all the {{ cat }} interviews.">{{ cat }}</a></li>
+        <!-- <li><a href="/interviews/{{ cat }}/" title="View all the {{ cat }} interviews.">{{ cat }}</a></li> -->
+        <li>{{ cat }}</li>
     {% endfor %}
   </ul>
 

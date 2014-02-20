@@ -36,11 +36,13 @@ log("Loaded %s interviews." % len(posts))
 # site/interviews/NAME/index.html (individual interviews)
 for p in posts:
     name = p.yaml['name']
+    dot_name = name.replace(" ", ".")
     log("interview: %s" % name)
     data = p.yaml  # name, person, summary, categories
+    data['dot_name'] = dot_name
     data['title'] = "Interview with: " + name
     data['markdown'] = p.html()
-    out_file = 'site/interviews/%s/index.html' % name.replace(" ", ".")
+    out_file = 'site/interviews/%s/index.html' % dot_name
     rwt.render(data, out_file, 'interview.html')
 
 
