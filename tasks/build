@@ -42,12 +42,24 @@ for p in posts:
     data['dot_name'] = dot_name
     data['title'] = "Interview with: " + name
     data['markdown'] = p.html()
+    data['time'] = 'XXXXXXXXXXXXXXXXX'
     out_file = 'site/interviews/%s/index.html' % dot_name
     rwt.render(data, out_file, 'interview.html')
 
 
 # site/index.html (landing)
 # site/pageXXXX/index.html (pagination)
+
+# TODO
+# - default template
+#    - last update time
+#    - # interviews, # categories , # of bits
+#    - licence CSS
+#    - expand bits in markkown
+# - interview template
+#    - fix posted time
+# - landing page + pagination
+
 
 
 
