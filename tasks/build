@@ -21,6 +21,10 @@ posts, num_categories = rwt.load_posts()
 posts.reverse()
 log("Loaded %s interviews." % len(posts))
 
+if len(posts) == 0:
+    print "You don't have interviews :("
+    exit(0)
+
 # Header variables for the defualt template
 h = {
     'last': datetime.datetime.now().strftime('%d, %b %Y'),
