@@ -55,7 +55,7 @@ shutil.copyfile("site/page0/index.html", "site/index.html")
 # - default template
 #    - last update time
 #    - # interviews, # categories , # of bits
-#    - licence CSS
+#    DONE - licence CSS
 #    - expand bits in markkown
 # - interview template
 # DONE - fix posted time
