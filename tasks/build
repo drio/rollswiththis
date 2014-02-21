@@ -58,6 +58,6 @@ shutil.copyfile("site/page0/index.html", "site/index.html")
 #    - licence CSS
 #    - expand bits in markkown
 # - interview template
-#    - fix posted time
-# - landing page + pagination
+# DONE - fix posted time
+# DONE - landing page + pagination
 
