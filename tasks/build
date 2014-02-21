@@ -3,8 +3,10 @@
 import sys
 import os
 import shutil
+import datetime
 import rwt
 from rwt.pagination import Pagination
+
 
 def log(msg):
     sys.stdout.write(">> " + msg + "\n")
@@ -13,41 +15,52 @@ def log(msg):
 # site/images/portraits
 shutil.copytree("public", "site")
 
+# Load all posts (name, summary, tags, content (markdown))
+# yaml + markdown
+posts, num_categories = rwt.load_posts()
+posts.reverse()
+log("Loaded %s interviews." % len(posts))
+
+# Header variables for the defualt template
+h = {
+    'last': datetime.datetime.now().strftime('%d, %b %Y'),
+    'num_interviews': len(posts),
+    'num_categories': num_categories
+}
+
 # site/404.html
+h['title'] = '404'
 log("Creating 404.")
 data = {}
 data['title'] = '404'
 data['type'] = 'post'
 data['content'] = open('pages/404.html').read()
-rwt.render('site/404.html', data=data, title='404')
+rwt.render('site/404.html', data=data, header=h)
 
 # site/about.html
+h['title'] = 'about'
 log("Creating about.")
 data = {}
 data['title'] = 'About'
 data['type'] = 'post'
 data['content'] = open('pages/about/index.html').read()
-rwt.render('site/about.html', data=data, title='about')
-
-# Load all posts (name, summary, tags, content (markdown))
-# yaml + markdown
-posts = rwt.load_posts()
-posts.reverse()
-log("Loaded %s interviews." % len(posts))
+rwt.render('site/about.html', data=data, header=h)
 
 # site/interviews/NAME/index.html (individual interviews)
 log("Rendering interviews.")
 for p in posts:
     log("interview: %s" % p.name)
     out_file = 'site/interviews/%s/index.html' % p.dot_name
-    rwt.render(out_file, 'interview.html', post=p, title=p.name)
+    h['title'] = p.name
+    rwt.render(out_file, 'interview.html', post=p, header=h)
 
 # Pages (list of interviews + pagination)
 log("Creating interviews' pages")
 pnation = Pagination(posts, 3)
 for page in pnation.iter_pages():
     out_file = 'site/page%s/index.html' % page["curr"]
-    rwt.render(out_file, 'interviews.html', page=page, title="page #%s" % page["curr"], pagination=pnation)
+    h['title'] = "page #%s" % page["curr"]
+    rwt.render(out_file, 'interviews.html', page=page, pagination=pnation, header=h)
 shutil.copyfile("site/page0/index.html", "site/index.html")
 
 

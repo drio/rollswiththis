@@ -25,9 +25,13 @@ def mkdir_p(path):
 
 def load_posts():
     posts = []
+    categories = set([])
     for pp in glob.glob("posts/*.interview"):
-        posts.append(Post(pp))
-    return posts
+        p = Post(pp)
+        for c in p.categories:
+            categories.add(c)
+        posts.append(p)
+    return posts, len(categories)
 
 
 def render(out_file, tname='default.html', **kwargs):
