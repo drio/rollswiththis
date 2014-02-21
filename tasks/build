@@ -66,11 +66,13 @@ shutil.copyfile("site/page0/index.html", "site/index.html")
 
 # TODO
 # - default template
-#    - last update time
-#    - # interviews, # categories , # of bits
+#    DONE - last update time
+#    DONE - # interviews, # categories ,
+#    - # of bits
 #    DONE - licence CSS
-#    - expand bits in markkown
-# - interview template
-# DONE - fix posted time
-# DONE - landing page + pagination
+#    - expand hard/soft in markkown
+#    - add script to bootstrap site (pull content for usesthis) for testing
+#
+# DONE - fix posted time (interview temp)
+# DONE - landing page + pagination (interview temp)
 
