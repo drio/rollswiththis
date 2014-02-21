@@ -1,20 +1,20 @@
 {% extends "default.html" %}
 {% block content %}
 <article class="interview">
-  <img src="/images/portraits/{{ data.dot_name }}.jpg" width="500" height="335" class="portrait" alt="{{ data.name }}">
-  <h3 class="person">{{ data.name }}</h3>
-  <p class="summary">{{ data.summary }}</p>
+  <img src="/images/portraits/{{ post.dot_name }}.jpg" width="500" height="335" class="portrait" alt="{{ post.name }}">
+  <h3 class="person">{{ post.name }}</h3>
+  <p class="summary">{{ post.summary }}</p>
   <p class="details">
-    Posted <time datetime="{{ data.time }}">{{ data.time }}.</time>
+    Posted <time datetime="{{ post.time }}">{{ post.time }}.</time>
   </p>
   <ul class="categories">
-    {% for cat in data.categories  %}
+    {% for cat in post.categories  %}
         <!-- <li><a href="/interviews/{{ cat }}/" title="View all the {{ cat }} interviews.">{{ cat }}</a></li> -->
         <li>{{ cat }}</li>
     {% endfor %}
   </ul>
 
-  {{ data.markdown }}
+  {{ post.html() }}
 
   <p class="license">This interview is available under the <a href="http://creativecommons.org/licenses/by-sa/3.0/" title="View details of the license."> Attribution-ShareAlike Creative Commons license</a>.</p>
 </article>

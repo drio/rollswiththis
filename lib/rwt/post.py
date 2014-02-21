@@ -25,6 +25,13 @@ class Post(object):
             else:
                 break
 
+        y = self.yaml
+        self.dot_name = y['name'].replace(" ", ".")
+        self.name = y['name']
+        self.summary = y['summary']
+        self.categories = y['categories']
+        self.time = "XXXXXXXXXXXXXXXXXXXXX"
+
     def load_markdown(self):
         n = 0
         for l in self._input.split('\n'):

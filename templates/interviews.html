@@ -1,22 +1,51 @@
 {% extends "default.html" %}
 {% block content %}
 
-{% @posts.each do |interview| %}
+{% for int in page['items'] %}
   <article class="interviewee">
-    <a class="port_image" href="http://{{interview.slug}}.rollswiththis.com/" title="View an interview with <{ interview.name %>."><img src="/images/portraits/<%= interview.slug %>.jpg" width="250" height="168" class="portrait" alt="{{ interview.name }}"></a>
+    <a class="port_image" href="http://rollswiththis.com/interviews/{{int.dot_name}}" title="View an interview with {{ int.name }}.">
+        <img src="/images/portraits/{{ int.dot_name }}.jpg" width="250" height="168" class="portrait" alt="{{ int.name }}">
+    </a>
     <div class="person_info">
-            <h3 class="person"><a href="http://<{ interview.slug }>.rollswiththis.com/" title="View an interview with {{ interview.name }}.">{{ interview.name }}</a></h3>
-            <p class="summary">{{ interview.summary }}</p>
-            <p class="details">
-              Posted <time datetime="{{ interview.date.strftime('%Y-%m-%d') }}">{{ interview.date.strftime('%B %d, %Y') }}.</time>
-            </p>
-            <ul class="categories">
-            <% interview.categories.each do |category| %>
-                <li><a href="/interviews/{{ category }}/" title="View all the {{ category.capitalize }} interviews.">{{ category }}</a></li>
-            <% end %>
-            </ul>
+      <h3 class="person">
+        <a href="http://rollswiththis.com/interviews/{{ int.dot_name }}" title="View an interview with {{ int.name }}.">{{ int.name }}</a>
+      </h3>
+
+      <p class="summary">{{ int.summary }}</p>
+
+      <p class="details"> Posted <time datetime="{{ int.time }}">{{ int.time }}.</time> </p>
+
+      <ul class="categories">
+        {% for cat in int.categories  %}
+            <!-- <li><a href="/interviews/{{ cat }}/" title="View all the {{ cat }} interviews.">{{ cat }}</a></li> -->
+            <li>{{ cat }}</li>
+        {% endfor %}
+      </ul>
+
     </div>
   </article>
-<% end %>
+{% endfor %}
+
+{% if page.prev > -1 or page.next > -1 %}
+    <nav id="paginator">
+    {% if page.prev > -1 %}
+        <a href="/page{{ page.prev }}/" title="Go to page {{ page.prev }} of the interviews.">Previous</a>
+    {% else %}
+        <span>Previous</span>
+    {% endif %}
+
+    - Page <strong>{{ page.curr }}</strong> of <strong>{{ pagination.n_pages }}</strong> ({{pagination.n_inter}} interviews) -
+
+    {% if page.next > -1 %}
+        <a href="/page{{ page.next }}/" title="Go to page {{ page.next }} of the interviews.">Next</a>
+    {% else %}
+        <span>Next</span>
+    {% endif %}
+    </nav>
+{% endif %}
+
+
+
+    </nav>
 
 {% endblock %}

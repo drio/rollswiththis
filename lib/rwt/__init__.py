@@ -16,7 +16,7 @@ env.loader = FileSystemLoader(main_dir + './templates')
 def mkdir_p(path):
     try:
         os.makedirs(path)
-    except OSError as exc: # Python >2.5
+    except OSError as exc:  # Python >2.5
         if exc.errno == errno.EEXIST and os.path.isdir(path):
             pass
         else:
@@ -30,8 +30,8 @@ def load_posts():
     return posts
 
 
-def render(data, out_file, tname='default.html'):
+def render(out_file, tname='default.html', **kwargs):
     mkdir_p(os.path.dirname(out_file))
     tmpl = env.get_template(tname)
     with open(out_file, 'w') as _f:
-        _f.write(tmpl.render(data=data))
+        _f.write(tmpl.render(**kwargs))

@@ -11,7 +11,10 @@ virt_env:
 	@echo '---'
 	@echo '--> $ source virt_env/bin/activate'
 
+test:
+	python tests/*.py
+
 watch:
 	filewatcher "pages/*.html templates/*.html css/*" "rm -rf site; make site"
 
-.PHONY: watch
+.PHONY: watch test

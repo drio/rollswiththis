@@ -4,6 +4,7 @@ import sys
 import os
 import shutil
 import rwt
+from rwt.pagination import Pagination
 
 def log(msg):
     sys.stdout.write(">> " + msg + "\n")
@@ -18,7 +19,7 @@ data = {}
 data['title'] = '404'
 data['type'] = 'post'
 data['content'] = open('pages/404.html').read()
-rwt.render(data, 'site/404.html')
+rwt.render('site/404.html', data=data, title='404')
 
 # site/about.html
 log("Creating about.")
@@ -26,29 +27,29 @@ data = {}
 data['title'] = 'About'
 data['type'] = 'post'
 data['content'] = open('pages/about/index.html').read()
-rwt.render(data, 'site/about.html')
+rwt.render('site/about.html', data=data, title='about')
 
 # Load all posts (name, summary, tags, content (markdown))
 # yaml + markdown
 posts = rwt.load_posts()
+posts.reverse()
 log("Loaded %s interviews." % len(posts))
 
 # site/interviews/NAME/index.html (individual interviews)
+log("Rendering interviews.")
 for p in posts:
-    name = p.yaml['name']
-    dot_name = name.replace(" ", ".")
-    log("interview: %s" % name)
-    data = p.yaml  # name, person, summary, categories
-    data['dot_name'] = dot_name
-    data['title'] = "Interview with: " + name
-    data['markdown'] = p.html()
-    data['time'] = 'XXXXXXXXXXXXXXXXX'
-    out_file = 'site/interviews/%s/index.html' % dot_name
-    rwt.render(data, out_file, 'interview.html')
+    log("interview: %s" % p.name)
+    out_file = 'site/interviews/%s/index.html' % p.dot_name
+    rwt.render(out_file, 'interview.html', post=p, title=p.name)
 
+# Pages (list of interviews + pagination)
+log("Creating interviews' pages")
+pnation = Pagination(posts, 3)
+for page in pnation.iter_pages():
+    out_file = 'site/page%s/index.html' % page["curr"]
+    rwt.render(out_file, 'interviews.html', page=page, title="page #%s" % page["curr"], pagination=pnation)
+shutil.copyfile("site/page0/index.html", "site/index.html")
 
-# site/index.html (landing)
-# site/pageXXXX/index.html (pagination)
 
 # TODO
 # - default template
@@ -59,8 +60,4 @@ for p in posts:
 # - interview template
 #    - fix posted time
 # - landing page + pagination
-
-
-
-
 

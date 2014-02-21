@@ -12,19 +12,19 @@ tmpl = env.get_template('interview.html')
 data = {}
 data['title'] = 'A great page title'
 data['interview'] = 'the interview here...'
-#print tmpl.render(data=data)
+print tmpl.render(data=data, title="fooooooo")
 
 tmpl = env.get_template('interviews.html')
 data = {}
 data['title'] = 'A great page title'
 data['interviews'] = [{"name": "one"}, {"name": "two"}]
-#print tmpl.render(data=data)
+print tmpl.render(data=data, title="barrrrrrrrrrrrra")
 
 p = rwt.Post('posts/2012-10-23-rob.pike.interview')
-print p.yaml['name']
-print p.yaml['summary']
-print p.yaml['categories']
-print p.html()
+print p.name
+print p.summary
+print p.categories
+#print p.html()
 
 
 
