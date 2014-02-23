@@ -2,6 +2,7 @@ import glob
 import os
 import errno
 from rwt.post import Post
+from rwt.ware import Ware
 from jinja2 import FileSystemLoader
 from jinja2.environment import Environment
 
@@ -32,6 +33,14 @@ def load_posts():
             categories.add(c)
         posts.append(p)
     return posts, len(categories)
+
+
+def load_wares():
+    wares = {}
+    for wy in glob.glob("data/wares/*/*.yml"):
+        w = Ware(wy)
+        wares[w.name] = w
+    return wares
 
 
 def render(out_file, tname='default.html', **kwargs):

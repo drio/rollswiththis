@@ -1,0 +1,56 @@
+---
+name: Jordi Fernandez
+summary: Software Architect
+categories:
+- linux
+- java
+- developer
+- latex
+---
+
+#### Who are you, and what do you do?
+
+Hola! I'm [Jordi Fernandez](http://www.jordi.fernandez.name), Senior Technical
+Architect taking care of Digital Experience at Adidas Group.
+
+#### What hardware do you use?
+
+I use a Windows 7 unpowered Dell Laptop, a [debian]() GNU/Linux powered Dell Laptop
+and a [macbook-pro]() matte display. But the only real portable thing is the
+[iphone-5].
+
+#### And what software?
+
+The Windows and Mac laptops shelter some [debian]() GNU/Linux VMs that are fired
+when something serious has to be made. There are some [solaris]() VMs as well for
+the yearning moments.
+
+The command line is where serendipity happens in my life. Just throw the usual
+suspects ([bash](), [emacs](), [binutils](), [git](), [graphviz](),
+[puppet]()...) and something magical and unexpected will happen for sure -
+that's the beauty of pipe-combining in creative ways.
+
+#### What would be your dream setup?
+
+I wish the iPhone had a decent keyboard.
+
+I hope those big OS vendors will stop some day adding bloated
+concentration-killer "features" (also known as notifications) popping here and
+there, killing our flow states. When we were free of jumping widgets asking for
+our attention like three-years-old-kids, we will be able to make our way with
+the UNIX command line, apt, web browsers and Idea.
+
+I would like web browsers to be much smarter. C'mon, organizing bookmarks in a
+folder structure is such an old-fashioned thing. You browse the web, learn
+something about hypermedia and arbitrary linking and apply that to my
+bookmarks.
+
+And, oh man, passwords/login: is someone out there with a solution? Please, no
+more unnecessary complexity.
+
+In the name of productivity: invent some kind of expandable display so that we
+can see all our terminals. Who will kill <ctrl|cmd>tabbing?
+
+My dream setup is the simplest possible. And that is in fact the hardest to
+achieve. Just quoting Antoine de Saint-Exupery: "perfection is not achieved
+when there is nothing more to add but when there is nothing else to take away".

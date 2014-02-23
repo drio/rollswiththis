@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+source_path = File.dirname(__dir__)
+
+$:.unshift(source_path)
+
+abort("You must supply a name for the interviewee.") if ARGV.length < 2
+
+name = ARGV.join(' ')
+slug = name.downcase.gsub(/ /, '.')
+date = Time.now.strftime('%Y-%m-%d')
+
+file_path = File.join(source_path, 'posts', "#{date}-#{slug}.interview")
+abort("Interview already exists for #{slug}.") if File.exists?(file_path)
+
+output = <<OUTPUT
+---
+name: #{name}
+summary: (summary)
+categories:
+- (category)
+- (category)
+---
+
+#### Who are you, and what do you do?
+
+#### What hardware do you use?
+
+#### And what software?
+
+#### What would be your dream setup?
+
+OUTPUT
+
+File.open(file_path, 'w') do |file|
+  file.write(output)
+end
+
+`open #{file_path}`

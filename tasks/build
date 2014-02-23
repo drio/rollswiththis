@@ -25,6 +25,11 @@ if len(posts) == 0:
     print "You don't have interviews :("
     exit(0)
 
+# Load all the wares
+wares = rwt.load_wares()
+log("Loaded %s wares." % len(wares))
+
+
 # Header variables for the defualt template
 h = {
     'last': datetime.datetime.now().strftime('%d, %b %Y'),
@@ -36,8 +41,6 @@ h = {
 h['title'] = '404'
 log("Creating 404.")
 data = {}
-data['title'] = '404'
-data['type'] = 'post'
 data['content'] = open('pages/404.html').read()
 rwt.render('site/404.html', data=data, header=h)
 
@@ -45,8 +48,6 @@ rwt.render('site/404.html', data=data, header=h)
 h['title'] = 'about'
 log("Creating about.")
 data = {}
-data['title'] = 'About'
-data['type'] = 'post'
 data['content'] = open('pages/about/index.html').read()
 rwt.render('site/about.html', data=data, header=h)
 
