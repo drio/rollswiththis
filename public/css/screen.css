@@ -30,7 +30,7 @@ p {
 }
 
 a {
-  color: steelblue;
+  color: #EF5D36;
   text-decoration: none;
 }
 
@@ -40,7 +40,7 @@ a:not(:hover) {
 
 a:hover {
   text-decoration: none;
-  color: orchid;
+  color: #F5D81E;
 }
 
 header {
@@ -52,9 +52,9 @@ header {
   font-size: 28px;
 }
 
-.main_title span#rolls { color: #98B6CB; }
-.main_title span#with  { color: #EF5D36; }
-.main_title span#this  { color: #F5D81E; }
+.main_title span#rolls     { color: #98B6CB; }
+.main_title span#with      { color: #EF5D36; }
+.main_title span#this      { color: #F5D81E; }
 .main_title span#rwt_text  { font-size: 16px; }
 
 /* --- */
@@ -98,8 +98,8 @@ margin: 0 0 20px 0;
 }
 
 dt {
-font-style: italic;
-color: steelblue;
+color: #EF5D36;
+font-style: bold;
 }
 
 
