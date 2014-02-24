@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+rm -rf site && ./tasks/build && rsync -apv --delete site/* apu:/usr/local/www/rollswiththis.com/public/
