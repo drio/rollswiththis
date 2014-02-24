@@ -30,7 +30,7 @@ p {
 }
 
 a {
-  color: #EF5D36;
+  color: #98B6CB;
   text-decoration: none;
 }
 
@@ -39,8 +39,8 @@ a:not(:hover) {
 }
 
 a:hover {
+  color: #EF5D36;
   text-decoration: none;
-  color: #F5D81E;
 }
 
 header {
