@@ -1,7 +1,6 @@
 #!./virt_env/bin/python
 #
 import sys
-import os
 import shutil
 import datetime
 import rwt
@@ -15,20 +14,21 @@ def log(msg):
 # site/images/portraits
 shutil.copytree("public", "site")
 
-# Load all posts (name, summary, tags, content (markdown))
-# yaml + markdown
-posts, num_categories = rwt.load_posts()
-posts.reverse()
-log("Loaded %s interviews." % len(posts))
-
-if len(posts) == 0:
-    print "You don't have interviews :("
-    exit(0)
-
 # Load all the wares
 wares = rwt.load_wares()
 log("Loaded %s wares." % len(wares))
 
+
+# Load all posts (name, summary, tags, content (markdown))
+# yaml + markdown
+posts, num_categories = rwt.load_posts(wares)
+posts.reverse()
+log("Loaded %s interviews." % len(posts))
+
+
+if len(posts) == 0:
+    print "You don't have interviews :("
+    exit(0)
 
 # Header variables for the defualt template
 h = {

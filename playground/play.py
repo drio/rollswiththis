@@ -12,20 +12,25 @@ tmpl = env.get_template('interview.html')
 data = {}
 data['title'] = 'A great page title'
 data['interview'] = 'the interview here...'
-print tmpl.render(data=data, title="fooooooo")
+#print tmpl.render(data=data, title="fooooooo")
 
 tmpl = env.get_template('interviews.html')
 data = {}
 data['title'] = 'A great page title'
 data['interviews'] = [{"name": "one"}, {"name": "two"}]
-print tmpl.render(data=data, title="barrrrrrrrrrrrra")
+#print tmpl.render(data=data, title="barrrrrrrrrrrrra")
 
-p = rwt.Post('posts/2012-10-23-rob.pike.interview')
+
+
+wares = rwt.load_wares()
+print "Loaded %s wares." % len(wares)
+
+p = rwt.Post('posts/2014-02-23-jordi.fernandez.interview', wares)
+print "----"
 print p.name
 print p.summary
 print p.categories
+print p.markdown
 #print p.html()
-
-
 
 

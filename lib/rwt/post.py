@@ -5,19 +5,23 @@ import re
 import datetime
 
 MATCH_DATE = re.compile(r"posts/(\d+)-(\d+)-(\d+)-")
+MATCH_WARE = re.compile(r"(\[[\w-]+\]\(\))")
+MATCH_NAME = re.compile(r"\[([\w-]+)\]")
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
 class Post(object):
-    def __init__(self, path):
+    def __init__(self, path, wares):
         self._input = open(path).read()
+        self.wares = wares
         self.yaml = {}
         self.markdown = ""
         self.__extract_date(path)
         self.__load_yaml()
         self.__load_markdown()
+        self.__expand_wares()
 
     def __load_yaml(self):
         docs = yaml.load_all(self._input)
@@ -43,6 +47,20 @@ class Post(object):
                 self.markdown += l + "\n"
             if l[0:3] == '---':
                 n += 1
+
+    def __expand_wares(self):
+        d_wr = {}
+        for md_ware in re.findall(MATCH_WARE, self.markdown):
+            for w_name in re.findall(MATCH_NAME, md_ware):
+                n = w_name.lower()
+                if n in self.wares:
+                    d_wr[n] = self.wares[n].url
+                else:
+                    raise Exception("I cannot expand ware: %s" % w_name)
+
+        for name, url in d_wr.items():
+            self.markdown = self.markdown.replace('[%s]()' % name,
+                                                  '[%s](%s)' % (name, url))
 
     def html(self):
         return markdown2.markdown(self.markdown)

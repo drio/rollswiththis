@@ -24,11 +24,11 @@ def mkdir_p(path):
             raise
 
 
-def load_posts():
+def load_posts(wares):
     posts = []
     categories = set([])
     for pp in glob.glob("posts/*.interview"):
-        p = Post(pp)
+        p = Post(pp, wares)
         for c in p.categories:
             categories.add(c)
         posts.append(p)
@@ -39,7 +39,8 @@ def load_wares():
     wares = {}
     for wy in glob.glob("data/wares/*/*.yml"):
         w = Ware(wy)
-        wares[w.name] = w
+        k = str(w.short_name).lower()
+        wares[k] = w
     return wares
 
 

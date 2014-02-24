@@ -17,7 +17,7 @@ Architect taking care of Digital Experience at Adidas Group.
 
 I use a Windows 7 unpowered Dell Laptop, a [debian]() GNU/Linux powered Dell Laptop
 and a [macbook-pro]() matte display. But the only real portable thing is the
-[iphone-5].
+[iphone-5]().
 
 #### And what software?
 
@@ -26,8 +26,8 @@ when something serious has to be made. There are some [solaris]() VMs as well fo
 the yearning moments.
 
 The command line is where serendipity happens in my life. Just throw the usual
-suspects ([bash](), [emacs](), [binutils](), [git](), [graphviz](),
-[puppet]()...) and something magical and unexpected will happen for sure -
+suspects ([bash](), [emacs](), [binutils](), [git](), [graphviz](), [puppet](), ...)
+and something magical and unexpected will happen for sure -
 that's the beauty of pipe-combining in creative ways.
 
 #### What would be your dream setup?
