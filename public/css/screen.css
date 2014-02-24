@@ -47,6 +47,15 @@ header {
   margin:3px;
 }
 
+.main_title span {
+  font-family: 'Bowlby One SC', cursive;
+  font-size: 28px;
+}
+
+.main_title span#rolls { color: #98B6CB; }
+.main_title span#with  { color: #EF5D36; }
+.main_title span#this  { color: #F5D81E; }
+.main_title span#rwt_text  { font-size: 16px; }
 
 /* --- */
 
