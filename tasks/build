@@ -21,7 +21,7 @@ log("Loaded %s wares." % len(wares))
 
 # Load all posts (name, summary, tags, content (markdown))
 # yaml + markdown
-posts, num_categories = rwt.load_posts(wares)
+posts, num_categories, num_wares = rwt.load_posts(wares)
 posts.reverse()
 log("Loaded %s interviews." % len(posts))
 
@@ -34,7 +34,8 @@ if len(posts) == 0:
 h = {
     'last': datetime.datetime.now().strftime('%d, %b %Y'),
     'num_interviews': len(posts),
-    'num_categories': num_categories
+    'num_categories': num_categories,
+    'num_wares': num_wares
 }
 
 # site/404.html

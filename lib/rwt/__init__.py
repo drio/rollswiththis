@@ -27,12 +27,14 @@ def mkdir_p(path):
 def load_posts(wares):
     posts = []
     categories = set([])
+    n_wares = 0
     for pp in glob.glob("posts/*.interview"):
         p = Post(pp, wares)
         for c in p.categories:
             categories.add(c)
         posts.append(p)
-    return posts, len(categories)
+        n_wares += len(p.p_wares)
+    return posts, len(categories), n_wares
 
 
 def load_wares():

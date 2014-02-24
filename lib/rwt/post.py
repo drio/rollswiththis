@@ -15,6 +15,7 @@ sys.setdefaultencoding('utf-8')
 class Post(object):
     def __init__(self, path, wares):
         self._input = open(path).read()
+        self.p_wares = set([])
         self.wares = wares
         self.yaml = {}
         self.markdown = ""
@@ -59,6 +60,7 @@ class Post(object):
                     raise Exception("I cannot expand ware: %s" % w_name)
 
         for name, url in d_wr.items():
+            self.p_wares.add(name)
             self.markdown = self.markdown.replace('[%s]()' % name,
                                                   '[%s](%s)' % (name, url))
 
