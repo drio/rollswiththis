@@ -36,7 +36,7 @@ class Post(object):
                 break
 
         y = self.yaml
-        self.dot_name = y['name'].replace(" ", ".")
+        self.dot_name = y['name'].replace(" ", ".").lower()
         self.name = y['name']
         self.summary = y['summary']
         self.categories = y['categories']
